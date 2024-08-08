@@ -18,8 +18,6 @@ def most_stars_repos(languages, min_stars=100000, sort="stars", order="ascending
     items = json_response["items"]              # returning list of dictionaries
 
     return [GitHubRepo(item["name"], item["language"], item["stargazers_count"]) for item in items]
-    # return [GitHubRepo(item["name"], item["language"], item["stargazers_count"]) for item in items]
-
 
 def create_query(languages, min_stars):
     
