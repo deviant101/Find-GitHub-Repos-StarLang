@@ -1,6 +1,6 @@
 import requests
-from models import GitHubRepo
-from exceptions import GitHubApiException
+from functional_logic.models import GitHubRepo
+from functional_logic.exceptions import GitHubApiException
 
 GH_SEARCH_API_URL = "https://api.github.com/search/repositories"
 
@@ -17,7 +17,9 @@ def most_stars_repos(languages, min_stars=100000, sort="stars", order="ascending
     # print(json_response["items"][0].keys())   # to filter & find useful keys of repo
     items = json_response["items"]              # returning list of dictionaries
 
-    return [GitHubRepo({item["name"]}, {item["language"]}, {item["stargazers_count"]}) for item in items]
+    return [GitHubRepo(item["name"], item["language"], item["stargazers_count"]) for item in items]
+    # return [GitHubRepo(item["name"], item["language"], item["stargazers_count"]) for item in items]
+
 
 def create_query(languages, min_stars):
     
